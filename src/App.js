@@ -1,28 +1,77 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import LoginContainer from './containers/login';
+import NotfoundContainer from './containers/Notfound';
+import NavigationContainer from './containers/navigation';
+import MetricsContainer from './containers/metrics';
+import ReportPortalContainer from './containers/reportportal';
+import AdminUsersContainer from './containers/users';
+
+const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: () => <Redirect to="/admin/metrics" />
+  },
+  {
+    path: '/admin',
+    exact: true,
+    component: () => <Redirect to="/admin/metrics" />
+  },
+  {
+    path: '/admin/metrics',
+    exact: false,
+    component: () => <MetricsContainer/>
+  },
+  {
+    path: '/admin/reports',
+    exact: false,
+    component: () => <ReportPortalContainer/>
+  },
+  {
+    path: '/admin/admin-users',
+    exact: false,
+    component: () => <AdminUsersContainer/>
+  },
+
+]
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <div>
+            <Route
+      path="/admin/"
+      exact= {false}
+      component={NavigationContainer}
+      />
+          <Switch>
+            <Route path='/login' component={LoginContainer}/>
+            
+            {routes.map((e,i) => (
+
+                <Route 
+                  key={i}
+                  path={e.path}
+                  exact={e.exact}
+                  component={e.component}
+                />
+            )
+            )}
+          
+            <Route component={NotfoundContainer} />
+          </Switch>
+          </div>
+
+        </Router>
       </div>
     );
   }
 }
 
 export default App;
+ 

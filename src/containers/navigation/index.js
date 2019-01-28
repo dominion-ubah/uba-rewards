@@ -76,7 +76,7 @@ export default class NavigationContainer extends Component {
           <div className={(!this.state.mobileToggle)?"nav-cont":" nav-cont-off"}>
             <ul className="sidenav">
               <li onClick={this.toggleMobileNav.bind(this)}><NavLink  activeClassName="active" to="/admin/metrics"><i className="icon-dashboard fs3x c-icon" ></i>Dashboard</NavLink></li>
-              <li ><NavLink activeClassName="active"  to="#"><i className="icon-cms fs3x c-icon"></i>Content Management <span className="side-caret">></span></NavLink></li>
+              <li ><NavLink activeClassName="active"  to="#"><i className="icon-cms fs3x c-icon"></i>Content Management <span className="side-caret" style={{marginTop:'-2em'}}>></span></NavLink></li>
               <li className={(this.state.showDropUs)?"dropnav":" dropnav off-toggle "}><NavLink  onClick={this.toggleDropUs.bind(this)} activeClassName="active" to="#"><i className="icon-user fs3x c-icon"></i>User Management <span className="side-caret">></span></NavLink>
                   <ul className="drop">
                   <NavLink  activeClassName="active" to="#">Users</NavLink>
